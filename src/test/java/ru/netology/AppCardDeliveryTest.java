@@ -1,7 +1,5 @@
 package ru.netology;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -13,11 +11,6 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class AppCardDeliveryTest {
-    @BeforeEach
-    public void setUp() {
-        Configuration.browser = "chrome";
-        Configuration.browserVersion = "79.0";
-    }
 
     @Test
     void shouldSendFormTest() {
