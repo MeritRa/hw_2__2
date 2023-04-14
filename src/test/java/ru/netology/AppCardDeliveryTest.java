@@ -1,5 +1,6 @@
 package ru.netology;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
@@ -12,12 +13,18 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class AppCardDeliveryTest {
 
+    @BeforeEach
+    void setup() {
+        open("http://localhost:9999");
+    }
+    private String orderDate(int daysToWait){
+        return LocalDate.now().plusDays(daysToWait).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    }
     @Test
     void shouldSendFormTest() {
-        open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Ек");
         $$(".menu-item").find(exactText("Екатеринбург")).click();
-        $("[data-test-id=date] input").setValue(LocalDate.now().plusDays(3).format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+        $("[data-test-id=date] input").setValue(orderDate(3));
         $("[data-test-id=name] input").setValue("Иванов Андрей");
         $("[data-test-id=phone] input").setValue("+79200000000");
         $("[data-test-id=agreement]").click();
